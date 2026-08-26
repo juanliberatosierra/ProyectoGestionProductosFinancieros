@@ -147,7 +147,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        JOptionPane.showMessageDialog(this, "Desarrollado por Karla Lautero, Juan Liberato, Javier Carvajal");
+        JOptionPane.showMessageDialog(this,
+                "Gestión de Productos Financieros\n"
+                + "Versión 1.0\n\n"
+                + "Desarrollado por:\n"
+                + "Karla Lautero\n"
+                + "Juan Liberato\n"
+                + "Javier Carvajal"
+        );
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
