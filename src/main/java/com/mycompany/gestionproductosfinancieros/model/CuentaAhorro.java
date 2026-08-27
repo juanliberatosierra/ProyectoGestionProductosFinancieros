@@ -57,6 +57,12 @@ public class CuentaAhorro extends ProductoFinanciero implements ICalculable {
 
     @Override
     public double calcularSaldoFinal() {
-        return getSaldo() + calcularInteres() - calcularValorDeRetiro();
+        double saldoFinal = getSaldo() + calcularInteres() - calcularValorDeRetiro();
+
+        if (saldoFinal < 0) {
+            return 0;
+        }
+
+        return saldoFinal;
     }
 }
