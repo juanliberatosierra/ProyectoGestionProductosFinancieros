@@ -16,7 +16,7 @@ public class Chequera {
 
     public Chequera(int numeroCheques, String estado) {
         this.numeroCheques = numeroCheques;
-        this.estado = estado;
+        this.estado = estado = "ACTIVA";
     }
 
     public int getNumeroCheques() {

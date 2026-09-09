@@ -26,6 +26,9 @@ public class GUIAddChequera extends javax.swing.JFrame {
     public GUIAddChequera() {
         initComponents();
         setLocationRelativeTo(this);
+
+        txtEstado.setText("ACTIVA");
+        txtEstado.setEditable(false);
     }
 
     /**
@@ -106,7 +109,7 @@ public class GUIAddChequera extends javax.swing.JFrame {
         try {
             int numeroCuenta = Integer.parseInt(txtNumeroCuenta.getText().trim());
             int numeroCheques = Integer.parseInt(txtNumeroCheques.getText().trim());
-            String estado = txtEstado.getText().trim();
+            String estado = "ACTIVA";
 
             // Buscar la cuenta corriente
             CuentaCorriente cuenta = null;

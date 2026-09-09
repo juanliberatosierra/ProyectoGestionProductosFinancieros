@@ -8,6 +8,7 @@ import com.mycompany.gestionproductosfinancieros.model.CuentaCorriente;
 import com.mycompany.gestionproductosfinancieros.model.Chequera;
 import com.mycompany.gestionproductosfinancieros.servicios.ServicioProductoFinanciero;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +42,6 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtNumeroCuenta = new javax.swing.JTextField();
         txtTitular = new javax.swing.JTextField();
-        txtFechaApertura = new javax.swing.JTextField();
         txtSaldo = new javax.swing.JTextField();
         txtCuotaManejo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -50,6 +50,7 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        chooserFecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Cuenta Corriente");
@@ -59,9 +60,6 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
         jLabel6.setText("Tipo Cuenta:");
 
         txtNumeroCuenta.addActionListener(this::txtNumeroCuentaActionPerformed);
-
-        txtFechaApertura.setToolTipText("2025-10-25");
-        txtFechaApertura.addActionListener(this::txtFechaAperturaActionPerformed);
 
         txtSaldo.addActionListener(this::txtSaldoActionPerformed);
 
@@ -93,13 +91,14 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtFechaApertura, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(txtTitular, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(txtSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(txtCuotaManejo, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtTitular, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                        .addComponent(txtCuotaManejo, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                        .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(chooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -118,13 +117,13 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
                     .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFechaApertura, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(chooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -156,10 +155,14 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
         try {
             String strNumeroCuenta = txtNumeroCuenta.getText().trim();
             String titular = txtTitular.getText().trim();
-            String strFechaApertura = txtFechaApertura.getText().trim();
+            
             String strSaldo = txtSaldo.getText().trim();
             String strCuotaManejo = txtCuotaManejo.getText().trim();
             String strTipoCuenta = jComboBox1.getSelectedItem().toString();
+            
+            fechaApertura = chooserFecha.getDate().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
 
             if (strTipoCuenta.equals("Seleccione un tipo")) {
                 JOptionPane.showMessageDialog(
@@ -169,8 +172,7 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
                 return;
             }
 
-            numeroCuenta = Integer.parseInt(strNumeroCuenta);
-            fechaApertura = LocalDate.parse(strFechaApertura);
+            numeroCuenta = Integer.parseInt(strNumeroCuenta);     
             saldo = Double.parseDouble(strSaldo);
             cuotaManejo = Double.parseDouble(strCuotaManejo);
             tipoCuenta = strTipoCuenta;
@@ -205,10 +207,6 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroCuentaActionPerformed
 
-    private void txtFechaAperturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaAperturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaAperturaActionPerformed
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -240,6 +238,7 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private com.toedter.calendar.JDateChooser chooserFecha;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -248,7 +247,6 @@ public class GUIAddCuentaCorriente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtCuotaManejo;
-    private javax.swing.JTextField txtFechaApertura;
     private javax.swing.JTextField txtNumeroCuenta;
     private javax.swing.JTextField txtSaldo;
     private javax.swing.JTextField txtTitular;

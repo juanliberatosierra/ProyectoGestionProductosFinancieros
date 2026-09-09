@@ -35,13 +35,15 @@
                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtFechaApertura" pref="153" max="32767" attributes="0"/>
-                  <Component id="txtTitular" alignment="0" pref="153" max="32767" attributes="0"/>
-                  <Component id="txtSaldo" alignment="0" pref="153" max="32767" attributes="0"/>
-                  <Component id="txtCuotaManejo" alignment="0" pref="153" max="32767" attributes="0"/>
-                  <Component id="txtNumeroCuenta" pref="153" max="32767" attributes="0"/>
-                  <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtTitular" alignment="0" pref="153" max="32767" attributes="0"/>
+                      <Component id="txtCuotaManejo" alignment="0" pref="153" max="32767" attributes="0"/>
+                      <Component id="txtNumeroCuenta" pref="153" max="32767" attributes="0"/>
+                      <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="chooserFecha" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="txtSaldo" min="-2" pref="153" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="100" max="32767" attributes="0"/>
           </Group>
@@ -66,14 +68,14 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtFechaApertura" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chooserFecha" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtSaldo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSaldo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -109,14 +111,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTitular">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtFechaApertura">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="2025-10-25"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaAperturaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSaldo">
       <Events>
@@ -169,6 +163,8 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="chooserFecha">
     </Component>
   </SubComponents>
 </Form>

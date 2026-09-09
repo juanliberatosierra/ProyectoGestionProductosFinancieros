@@ -7,6 +7,7 @@ package com.mycompany.gestionproductosfinancieros.gui;
 import com.mycompany.gestionproductosfinancieros.model.CuentaAhorro;
 import com.mycompany.gestionproductosfinancieros.servicios.ServicioProductoFinanciero;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,11 +45,11 @@ public class GUIAddCuentaAhorro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtNumeroCuenta = new javax.swing.JTextField();
         txtTitular = new javax.swing.JTextField();
-        txtFechaApertura = new javax.swing.JTextField();
         txtSaldo = new javax.swing.JTextField();
         txtTasaInteres = new javax.swing.JTextField();
         txtNumeroRetiros = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
+        chooserFecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Cuenta Ahorro");
@@ -64,9 +65,6 @@ public class GUIAddCuentaAhorro extends javax.swing.JFrame {
         jLabel5.setText("Tasa Interés:");
 
         jLabel6.setText("Número Retiros:");
-
-        txtFechaApertura.setToolTipText("2025-10-25");
-        txtFechaApertura.addActionListener(this::txtFechaAperturaActionPerformed);
 
         txtSaldo.addActionListener(this::txtSaldoActionPerformed);
 
@@ -88,12 +86,12 @@ public class GUIAddCuentaAhorro extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTitular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFechaApertura, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTitular, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(txtSaldo, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtTasaInteres, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNumeroRetiros, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                    .addComponent(chooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(49, 49, 49)
                 .addComponent(btnAceptar)
                 .addGap(19, 19, 19))
@@ -109,11 +107,11 @@ public class GUIAddCuentaAhorro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(txtFechaApertura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(chooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -129,8 +127,6 @@ public class GUIAddCuentaAhorro extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
-        txtFechaApertura.getAccessibleContext().setAccessibleName("");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -139,50 +135,53 @@ public class GUIAddCuentaAhorro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSaldoActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        int numeroCuenta;
-        CuentaAhorro cuenta;
-        LocalDate fechaApertura;
-        double saldo;
-        double tasaInteres;
-        int numeroRetiros;
+    int numeroCuenta;
+    CuentaAhorro cuenta;
+    LocalDate fechaApertura;
+    double saldo;
+    double tasaInteres;
+    int numeroRetiros;
 
-        try {
-            String strNumeroCuenta = txtNumeroCuenta.getText().trim();
-            String titular = txtTitular.getText().trim();
-            String strFechaApertura = txtFechaApertura.getText().trim();
-            String strSaldo = txtSaldo.getText().trim();
-            String strTasaInteres = txtTasaInteres.getText().trim();
-            String strNumeroRetiros = txtNumeroRetiros.getText().trim();
+    try {
+        String strNumeroCuenta = txtNumeroCuenta.getText().trim();
+        String titular = txtTitular.getText().trim(); 
+        String strSaldo = txtSaldo.getText().trim();
+        String strTasaInteres = txtTasaInteres.getText().trim();
+        String strNumeroRetiros = txtNumeroRetiros.getText().trim();
 
-            numeroCuenta = Integer.parseInt(strNumeroCuenta);
-            fechaApertura = LocalDate.parse(strFechaApertura);
-            saldo = Double.parseDouble(strSaldo);
-            tasaInteres = Double.parseDouble(strTasaInteres);
-            numeroRetiros = Integer.parseInt(strNumeroRetiros);
+        numeroCuenta = Integer.parseInt(strNumeroCuenta);
 
-            cuenta = new CuentaAhorro(
-                    numeroCuenta,
-                    titular,
-                    fechaApertura,
-                    saldo,
-                    tasaInteres,
-                    numeroRetiros
-            );
+        fechaApertura = chooserFecha.getDate().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
 
-            cuenta.calcularValorDeRetiro();
+        saldo = Double.parseDouble(strSaldo);
+        tasaInteres = Double.parseDouble(strTasaInteres);
+        numeroRetiros = Integer.parseInt(strNumeroRetiros);
 
-            servicioProductoFinanciero.agregarProducto(cuenta);
+        cuenta = new CuentaAhorro(
+                numeroCuenta,
+                titular,
+                fechaApertura,
+                saldo,
+                tasaInteres,
+                numeroRetiros
+        );
 
-            JOptionPane.showMessageDialog(this, "Cuenta de ahorro creada!");
+        cuenta.calcularValorDeRetiro();
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e);
-        }
+        servicioProductoFinanciero.agregarProducto(cuenta);
+
+        JOptionPane.showMessageDialog(this, "Cuenta de ahorro creada!");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e);
+    }
     }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void txtFechaAperturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaAperturaActionPerformed
+                                               
+    private void txtFechaAperturaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaAperturaActionPerformed
+    }                                                
 
     /**
      * @param args the command line arguments
@@ -211,13 +210,13 @@ public class GUIAddCuentaAhorro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private com.toedter.calendar.JDateChooser chooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtFechaApertura;
     private javax.swing.JTextField txtNumeroCuenta;
     private javax.swing.JTextField txtNumeroRetiros;
     private javax.swing.JTextField txtSaldo;
