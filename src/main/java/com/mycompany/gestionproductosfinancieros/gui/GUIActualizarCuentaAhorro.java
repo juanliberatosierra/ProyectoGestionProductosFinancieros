@@ -45,12 +45,12 @@ public class GUIActualizarCuentaAhorro extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtTitular = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtFechaApertura = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtSaldo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtTasaInteres = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        chooserFecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Actualizar Cuenta de Ahorro");
@@ -71,8 +71,6 @@ public class GUIActualizarCuentaAhorro extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Apertura:");
 
-        txtFechaApertura.addActionListener(this::txtFechaAperturaActionPerformed);
-
         jLabel4.setText("Saldo:");
 
         jLabel5.setText("Tasa Interés:");
@@ -88,28 +86,28 @@ public class GUIActualizarCuentaAhorro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                            .addComponent(txtFechaApertura)
-                            .addComponent(txtTitular)
-                            .addComponent(txtTasaInteres)
-                            .addComponent(txtNumeroRetiros, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(chooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                .addComponent(txtTitular)
+                                .addComponent(txtTasaInteres)
+                                .addComponent(txtNumeroRetiros, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -132,9 +130,9 @@ public class GUIActualizarCuentaAhorro extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(txtFechaApertura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -173,7 +171,11 @@ public class GUIActualizarCuentaAhorro extends javax.swing.JFrame {
                 CuentaAhorro cuenta = (CuentaAhorro) pf;
 
                 txtTitular.setText(cuenta.getTitular());
-                txtFechaApertura.setText(cuenta.getFechaApertura().toString());
+
+                chooserFecha.setDate(
+                        java.sql.Date.valueOf(cuenta.getFechaApertura())
+                );
+
                 txtSaldo.setText(String.valueOf(cuenta.getSaldo()));
                 txtTasaInteres.setText(String.valueOf(cuenta.getTasaInteres()));
                 txtNumeroRetiros.setText(String.valueOf(cuenta.getNumeroRetiros()));
@@ -223,15 +225,21 @@ public class GUIActualizarCuentaAhorro extends javax.swing.JFrame {
                 CuentaAhorro cuenta = (CuentaAhorro) pf;
 
                 cuenta.setTitular(txtTitular.getText().trim());
+
                 cuenta.setFechaApertura(
-                        java.time.LocalDate.parse(txtFechaApertura.getText().trim())
+                        chooserFecha.getDate().toInstant()
+                                .atZone(java.time.ZoneId.systemDefault())
+                                .toLocalDate()
                 );
+
                 cuenta.setSaldo(
                         Double.parseDouble(txtSaldo.getText().trim())
                 );
+
                 cuenta.setTasaInteres(
                         Double.parseDouble(txtTasaInteres.getText().trim())
                 );
+
                 cuenta.setNumeroRetiros(
                         Integer.parseInt(txtNumeroRetiros.getText().trim())
                 );
@@ -263,6 +271,13 @@ public class GUIActualizarCuentaAhorro extends javax.swing.JFrame {
                     "Ingrese valores numéricos válidos."
             );
 
+        } catch (NullPointerException e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione una fecha válida."
+            );
+
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(
@@ -275,10 +290,6 @@ public class GUIActualizarCuentaAhorro extends javax.swing.JFrame {
     private void txtTitularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTitularActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTitularActionPerformed
-
-    private void txtFechaAperturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaAperturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaAperturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,13 +319,13 @@ public class GUIActualizarCuentaAhorro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
+    private com.toedter.calendar.JDateChooser chooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtFechaApertura;
     private javax.swing.JTextField txtNumeroCuenta;
     private javax.swing.JTextField txtNumeroRetiros;
     private javax.swing.JTextField txtSaldo;

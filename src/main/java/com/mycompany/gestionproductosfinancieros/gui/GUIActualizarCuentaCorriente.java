@@ -42,7 +42,6 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtFechaApertura = new javax.swing.JTextField();
         txtTitular = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -51,6 +50,7 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        chooserFecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Actualizar Cuenta Corriente");
@@ -64,8 +64,6 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
         btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         jLabel2.setText("Titular:");
-
-        txtFechaApertura.addActionListener(this::txtFechaAperturaActionPerformed);
 
         txtTitular.addActionListener(this::txtTitularActionPerformed);
 
@@ -89,36 +87,38 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnBuscar)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(9, 9, 9)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(chooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                    .addComponent(txtFechaApertura)
                                     .addComponent(txtTitular)
                                     .addComponent(txtCuotaManejo)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(53, 53, 53)
                                         .addComponent(btnActualizar))
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -135,10 +135,10 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(txtFechaApertura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(chooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,9 +182,9 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
                 );
 
                 cuenta.setFechaApertura(
-                        java.time.LocalDate.parse(
-                                txtFechaApertura.getText().trim()
-                        )
+                        chooserFecha.getDate().toInstant()
+                                .atZone(java.time.ZoneId.systemDefault())
+                                .toLocalDate()
                 );
 
                 cuenta.setSaldo(
@@ -199,7 +199,6 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
                         )
                 );
 
-                // Obtener el tipo seleccionado del JComboBox
                 String tipoCuenta = jComboBox1.getSelectedItem().toString();
 
                 if (tipoCuenta.equals("Seleccione un tipo")) {
@@ -239,6 +238,13 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
                     "Ingrese valores numéricos válidos."
             );
 
+        } catch (NullPointerException e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione una fecha válida."
+            );
+
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(
@@ -264,12 +270,15 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
                 CuentaCorriente cuenta = (CuentaCorriente) pf;
 
                 txtTitular.setText(cuenta.getTitular());
-                txtFechaApertura.setText(
-                        cuenta.getFechaApertura().toString()
+
+                chooserFecha.setDate(
+                        java.sql.Date.valueOf(cuenta.getFechaApertura())
                 );
+
                 txtSaldo.setText(
                         String.valueOf(cuenta.getSaldo())
                 );
+
                 txtCuotaManejo.setText(
                         String.valueOf(cuenta.getCuotaManejo())
                 );
@@ -310,10 +319,6 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void txtFechaAperturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaAperturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaAperturaActionPerformed
-
     private void txtTitularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTitularActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTitularActionPerformed
@@ -350,6 +355,7 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
+    private com.toedter.calendar.JDateChooser chooserFecha;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -358,7 +364,6 @@ public class GUIActualizarCuentaCorriente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtCuotaManejo;
-    private javax.swing.JTextField txtFechaApertura;
     private javax.swing.JTextField txtNumeroCuenta;
     private javax.swing.JTextField txtSaldo;
     private javax.swing.JTextField txtTitular;
